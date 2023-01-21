@@ -1,12 +1,13 @@
 import { View, Text, StyleSheet,Image, Dimensions } from 'react-native'
 import React from 'react'
 import Rating from './Rating'
+import { TouchableOpacity } from 'react-native'
 
 
 const { width } = Dimensions.get('window')
-const RecipeCard = ({title,style, image , author , rating, duration}) => {
+const RecipeCard = ({title,style, image , author , rating, duration,onPress }) => {
   return (
-   <View style={[styles.container, style]}>
+   <TouchableOpacity onPress={onPress} style={[styles.container, style]}>
         <View style={styles.row}>
             <View style={{flex: 1}}>
                 <Text numberOfLines={1} style={styles.title}>{title}</Text>
@@ -40,7 +41,7 @@ const RecipeCard = ({title,style, image , author , rating, duration}) => {
         </View>
 
         
-   </View>
+   </TouchableOpacity>
   )
 }
 

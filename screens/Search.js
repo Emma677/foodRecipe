@@ -1,13 +1,13 @@
-import { View, Text,SafeAreaView } from 'react-native'
+import { View, Text,SafeAreaView, StyleSheet} from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import InputBut from '../component/InputBut'
 import { RecipesContext } from '../App'
 import { FlatList } from 'react-native'
 import Card from '../component/Card'
 
-const Search = () => {
+const Search = ({navigation}) => {
   const { recipes } = useContext(RecipesContext)
-  const [filtered, setFiltered] = useState(recipes)
+  const [filtered, setFiltered] = useState([])
   const [keyWord, setKeyWord] = useState('')
 
   console.log('keyword',keyWord)
@@ -23,16 +23,18 @@ useEffect(() =>{
 }, [keyWord])
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <InputBut autoFocus onChangeText ={setKeyWord} value={keyWord}/>
 
       <FlatList
        data={filtered}
        numColumns={2}
+       style = {{flexGrow: 1}}
        keyExtractor ={item =>String(item?.id) }
        renderItem={({item}) =>
        <Card
      title={item?.name}
+     onPress={() => navigation.navigate('RecipeDetails', { item })}
      servings={item?.num_servings}
      image={item?.thumbnail_url}
      rating={item?.user_ratings?.score}
@@ -47,3 +49,10 @@ useEffect(() =>{
 }
 
 export default Search
+
+const styles = StyleSheet.create({
+  container:{
+    paddingHorizontal: 24,
+    flex:1
+  }
+})

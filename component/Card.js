@@ -1,12 +1,13 @@
 import { View, Text, StyleSheet,Image, Dimensions } from 'react-native'
 import React from 'react'
 import Rating from './Rating'
+import { TouchableOpacity } from 'react-native'
 
 
 const { width } = Dimensions.get('window')
-const Card = ({title, image ,style, servings}) => {
+const Card = ({title, image ,style, servings,onPress}) => {
   return (
-   <View style={[styles.container, style]}>
+   <TouchableOpacity onPress={onPress} style={[styles.container, style]}>
             <Image style={styles.image} source={{uri : image}}/>
             <Text numberOfLines={3} style={styles.title}>{title}</Text>
 
@@ -16,10 +17,9 @@ const Card = ({title, image ,style, servings}) => {
                 <Text style={styles.label}>servings</Text>
                 </>
             ): null
-
             }
     
-   </View>
+   </TouchableOpacity>
   )
 }
 

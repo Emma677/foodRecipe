@@ -8,6 +8,7 @@ import Search from './screens/Search';
 import React,{ useState } from 'react';
 import { useEffect } from 'react';
 import { getRecipesList } from './http';
+import RecipeDetails from './screens/RecipeDetails';
 
 
 
@@ -69,6 +70,7 @@ const handleRecipesFetch = async (tags, size) =>{
          <Stack.Screen name='Splash' component={Splash} options={{headerShown: false}}/>  
           <Stack.Screen name='Home' component={Home} options={{headerLeft: null, gestureEnabled: false}}/>
           <Stack.Screen name='Search' component={Search} options={{headerLeft: (props)=> <BackPress {...props}/>}}/>
+          <Stack.Screen name='RecipeDetails' component={RecipeDetails} options={{headerLeft: (props)=> <BackPress {...props}/>, title:''}}/>
       </Stack.Navigator>
     </NavigationContainer>
   </RecipesContext.Provider>
